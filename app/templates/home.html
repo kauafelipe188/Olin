@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Olinox{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Bem-vindo à Olinox</h1>
+    <p>Soluções em metalurgia e manutenção industrial.</p>
+    <a href="{{ url_for('unique_routes.services') }}" class="cta">Conheça nossos serviços</a>
+</section>
+
+<section class="about">
+    <h2>Sobre Nós</h2>
+    <p>A Olinox é referência em qualidade e inovação no setor metalúrgico. Contamos com uma equipe altamente qualificada para atender às suas necessidades.</p>
+    <a href="{{ url_for('unique_routes.services') }}" class="btn-more">Saiba mais</a>
+</section>
+
+<section class="contact-preview">
+    <h2>Entre em Contato</h2>
+    <p>Tem alguma dúvida ou precisa de mais informações? <a href="{{ url_for('unique_routes.contact') }}">Clique aqui para nos contatar</a>.</p>
+</section>
+{% endblock %}

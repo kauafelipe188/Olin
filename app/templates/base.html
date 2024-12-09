@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Olinox{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="logo">Olinox</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('unique_routes.home') }}">Home</a></li>
+                <li><a href="{{ url_for('unique_routes.services') }}">Serviços</a></li>
+                <li><a href="{{ url_for('unique_routes.projects') }}">Projetos</a></li>
+                <li><a href="{{ url_for('unique_routes.contact') }}">Contato</a></li>
+                <li><a href="{{ url_for('unique_routes.login') }}" class="admin-login">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Olinox. Todos os direitos reservados.</p>
+        <ul>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+        </ul>
+    </footer>
+    {% block scripts %}
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    {% endblock %}
+</body>
+</html>
