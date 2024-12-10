@@ -1,27 +1,58 @@
 {% extends "base.html" %}
 
+{% block title %}Administração - Projetos e Mensagens{% endblock %}
+
 {% block content %}
-<h1>Gerenciar Projetos</h1>
+<h1>Administração</h1>
+
+<!-- Seção de Projetos -->
+<h2>Projetos</h2>
 <a href="{{ url_for('unique_routes.add_project') }}" class="btn">Adicionar Projeto</a>
-<table>
-    <tr>
-        <th>Título</th>
-        <th>Descrição</th>
-        <th>Progresso</th>
-        <th>Ações</th>
-    </tr>
-    {% for project in projects %}
-    <tr>
-        <td>{{ project.title }}</td>
-        <td>{{ project.description }}</td>
-        <td>{{ project.progress }}%</td>
-        <td>
-            <a href="{{ url_for('unique_routes.edit_project', project_id=project.id) }}">Editar</a>
-            <form action="{{ url_for('unique_routes.delete_project', project_id=project.id) }}" method="POST" style="display: inline;">
-                <button type="submit">Excluir</button>
-            </form>
-        </td>
-    </tr>
-    {% endfor %}
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Progresso</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+        <tr>
+            <td>{{ project.title }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.progress }}%</td>
+            <td>
+                <a href="{{ url_for('unique_routes.edit_project', project_id=project.id) }}">Editar</a>
+                <form action="{{ url_for('unique_routes.delete_project', project_id=project.id) }}" method="POST" style="display: inline;">
+                    <button type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
+
+<!-- Seção de Mensagens -->
+<h2>Mensagens Recebidas</h2>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Mensagem</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.name }}</td>
+            <td>{{ message.email }}</td>
+            <td>{{ message.message }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}

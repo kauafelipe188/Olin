@@ -1,25 +1,28 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from app.models import db, Message, Admin, Project
 from datetime import datetime
 
 # Nome único para o Blueprint
 routes = Blueprint('unique_routes', __name__)
 
+# Página inicial
 @routes.route('/')
 def home():
     return render_template('home.html')
 
+# Serviços
 @routes.route('/services')
 def services():
     return render_template('services.html')
 
+# Projetos
 @routes.route('/projects')
 def projects():
-    # Recupera todos os projetos do banco de dados
-    projects = Project.query.all()
+    projects = Project.query.all()  # Buscando os projetos do banco de dados
     return render_template('projects.html', projects=projects)
 
+# Página de contato
 @routes.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
@@ -39,6 +42,7 @@ def contact():
 
     return render_template('contact.html')
 
+# Login
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -56,25 +60,23 @@ def login():
 
     return render_template('login.html')
 
+# Logout
 @routes.route('/logout', methods=['POST'])
 def logout():
     session.pop('admin_logged_in', None)
     flash('Você foi deslogado!')
     return '', 204  # Resposta sem conteúdo para requisições AJAX
 
-@routes.route('/mensagens', methods=['GET'])
-def messages():
+# Painel Administrativo - Projetos e Mensagens
+@routes.route('/admin/projects', methods=['GET'])
+def admin_projects():
     if 'admin_logged_in' not in session:
         flash('Acesso restrito. Faça login para acessar esta página.')
         return redirect(url_for('unique_routes.login'))
 
+    projects = Project.query.all()
     messages = Message.query.all()
-    return render_template('messages.html', messages=messages)
-
-@routes.route('/sobre')
-def about():
-    messages = Message.query.all()
-    return render_template('about.html', messages=messages)
+    return render_template('admin_projects.html', projects=projects, messages=messages)
 
 # Adicionar um projeto
 @routes.route('/add_project', methods=['GET', 'POST'])
@@ -88,19 +90,12 @@ def add_project():
         description = request.form['description']
         start_date = datetime.strptime(request.form['start_date'], '%Y-%m-%d').date()
         end_date = datetime.strptime(request.form['end_date'], '%Y-%m-%d').date()
-        image = request.files.get('image')  # Imagem, se fornecida
-
-        image_filename = None
-        if image:
-            image_filename = f'project_images/{image.filename}'
-            image.save(f'./static/{image_filename}')  # Salva a imagem na pasta estática
 
         new_project = Project(
             title=title,
             description=description,
             start_date=start_date,
-            end_date=end_date,
-            image=image_filename
+            end_date=end_date
         )
 
         db.session.add(new_project)
@@ -110,17 +105,7 @@ def add_project():
 
     return render_template('add_project.html')
 
-# Gerenciar projetos (exibir, editar, excluir)
-@routes.route('/admin/projects', methods=['GET'])
-def admin_projects():
-    if 'admin_logged_in' not in session:
-        flash('Acesso restrito. Faça login para acessar esta página.')
-        return redirect(url_for('unique_routes.login'))
-
-    projects = Project.query.all()
-    return render_template('admin_projects.html', projects=projects)
-
-# Editar projeto
+# Editar um projeto
 @routes.route('/edit_project/<int:project_id>', methods=['GET', 'POST'])
 def edit_project(project_id):
     if 'admin_logged_in' not in session:
@@ -135,20 +120,13 @@ def edit_project(project_id):
         project.start_date = datetime.strptime(request.form['start_date'], '%Y-%m-%d').date()
         project.end_date = datetime.strptime(request.form['end_date'], '%Y-%m-%d').date()
 
-        # Atualiza a imagem se fornecida
-        image = request.files.get('image')
-        if image:
-            image_filename = f'project_images/{image.filename}'
-            image.save(f'./static/{image_filename}')
-            project.image = image_filename
-
         db.session.commit()
         flash('Projeto atualizado com sucesso!')
         return redirect(url_for('unique_routes.admin_projects'))
 
     return render_template('edit_project.html', project=project)
 
-# Excluir projeto
+# Excluir um projeto
 @routes.route('/delete_project/<int:project_id>', methods=['POST'])
 def delete_project(project_id):
     if 'admin_logged_in' not in session:
@@ -160,3 +138,8 @@ def delete_project(project_id):
     db.session.commit()
     flash('Projeto excluído com sucesso!')
     return redirect(url_for('unique_routes.admin_projects'))
+
+# Sobre
+@routes.route('/about')
+def about():
+    return render_template('about.html')
