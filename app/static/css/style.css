@@ -285,11 +285,17 @@ footer ul li a:hover {
     background-color: #ffffff;
     border: 2px solid #001f3f;
     border-radius: 10px;
-    padding: 20px;
     width: 300px;
+    height: 300px; /* Garante que o quadrado seja sempre 300px */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    position: relative; /* Para alinhar o conteúdo interno */
 }
 
 .project-item:hover {
@@ -299,22 +305,38 @@ footer ul li a:hover {
 
 .project-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Ajusta a imagem sem distorção */
     border-radius: 8px;
-    margin-bottom: 15px;
+    position: absolute; /* Permite texto sobreposto */
+    top: 0;
+    left: 0;
+    z-index: 0;
 }
 
 .project-item h2 {
     font-size: 1.5em;
     color: #001f3f;
-    margin-bottom: 15px;
+    margin: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semitransparente para contraste */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .project-item p {
     font-size: 1em;
     color: #666666;
     line-height: 1.5;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semitransparente para contraste */
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: auto;
 }
+
 
 /* Modal */
 .modal-overlay {
@@ -479,4 +501,379 @@ footer ul li a:hover {
     background-color: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografia */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(to bottom, #001f3f, #d9d9d9); /* Gradiente do fundo */
+    color: #333;
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Conteúdo principal (garante que o conteúdo ocupe o espaço restante) */
+main {
+    flex: 1;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #001f3f; /* Azul escuro */
+    color: #D9D9D9;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 2em;
+    font-weight: bold;
+    color: #FFC107; /* Amarelo-ouro */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #D9D9D9;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #FFC107; /* Amarelo-ouro */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('../images/hero-placeholder.jpg') center/cover no-repeat;
+    color: #D9D9D9;
+    text-align: center;
+    padding: 120px 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+}
+
+.hero .cta {
+    padding: 15px 30px;
+    background-color: #FFC107;
+    color: #001f3f;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.hero .cta:hover {
+    background-color: #e6b400;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* About Section */
+.about {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.about h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: #001f3f;
+}
+
+.about p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #666666;
+}
+
+.about .btn-more {
+    padding: 12px 25px;
+    background-color: #FFC107;
+    color: #001f3f;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.about .btn-more:hover {
+    background-color: #e6b400;
+}
+
+/* SEÇÃO SERVICES COMPLETA */
+.services {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.services h1 {
+    font-size: 2.5em;
+    color: #001f3f;
+    margin-bottom: 40px;
+}
+
+.services .carousel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    justify-content: center;
+}
+
+.services .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.services .service-item {
+    flex: 0 0 100%; /* Ocupa 100% da largura do container */
+    padding: 20px;
+    text-align: center;
+    background: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 10px;
+}
+
+.services .service-item h2 {
+    font-size: 1.5em;
+    color: #001f3f;
+    margin-bottom: 10px;
+}
+
+.services .service-item p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.5;
+}
+
+.services .carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.services .carousel-controls button {
+    background: #001f3f;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.services .carousel-controls button:hover {
+    background: #003366;
+}
+
+/* Rodapé */
+footer {
+    background-color: #001f3f;
+    color: #D9D9D9;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Garante que o rodapé fique no final */
+}
+
+footer ul li a:hover {
+    color: #FFC107;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .services .service-item {
+        flex: 0 0 100%;
+    }
+}
+.messages-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #001f3f;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.styled-table th, .styled-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-form label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.message-form input, .message-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.message-form button {
+    padding: 10px;
+    background-color: #001f3f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.message-form button:hover {
+    background-color: #003366;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    color: #001f3f;
+    font-size: 24px;
+}
+
+.login-container .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    border-color: #001f3f;
+    outline: none;
+}
+
+.login-container .btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #001f3f;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-container .btn:hover {
+    background-color: #003366;
+}
+
+.login-container .btn:active {
+    background-color: #000f1f;
+}
+
+.login-container .forgot-password {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.login-container .forgot-password a {
+    color: #001f3f;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.login-container .forgot-password a:hover {
+    color: #003366;
 }

@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Gerenciar Projetos</h1>
-<a href="{{ url_for('routes.add_project') }}" class="btn">Adicionar Projeto</a>
+<a href="{{ url_for('unique_routes.add_project') }}" class="btn">Adicionar Projeto</a>
 <table>
     <tr>
         <th>Título</th>
@@ -16,8 +16,8 @@
         <td>{{ project.description }}</td>
         <td>{{ project.progress }}%</td>
         <td>
-            <a href="{{ url_for('routes.edit_project', project_id=project.id) }}">Editar</a>
-            <form action="{{ url_for('routes.delete_project', project_id=project.id) }}" method="POST" style="display: inline;">
+            <a href="{{ url_for('unique_routes.edit_project', project_id=project.id) }}">Editar</a>
+            <form action="{{ url_for('unique_routes.delete_project', project_id=project.id) }}" method="POST" style="display: inline;">
                 <button type="submit">Excluir</button>
             </form>
         </td>
