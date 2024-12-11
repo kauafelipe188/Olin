@@ -56,39 +56,7 @@ header nav ul li a:hover {
     color: #FFC107; /* Amarelo-ouro */
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('../images/hero-placeholder.jpg') center/cover no-repeat;
-    color: #D9D9D9;
-    text-align: center;
-    padding: 120px 20px;
-    animation: fadeIn 1.5s ease-in-out;
-}
 
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease-in-out;
-}
-
-.hero p {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-}
-
-.hero .cta {
-    padding: 15px 30px;
-    background-color: #FFC107;
-    color: #001f3f;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.hero .cta:hover {
-    background-color: #e6b400;
-}
 
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -100,38 +68,6 @@ header nav ul li a:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* About Section */
-.about {
-    padding: 80px 20px;
-    text-align: center;
-    background-color: #f4f4f4;
-}
-
-.about h2 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    color: #001f3f;
-}
-
-.about p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    color: #666666;
-}
-
-.about .btn-more {
-    padding: 12px 25px;
-    background-color: #FFC107;
-    color: #001f3f;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.about .btn-more:hover {
-    background-color: #e6b400;
-}
 
 /* Seção de Serviços */
 .services {
@@ -260,9 +196,9 @@ footer ul li a:hover {
 /* Seção de Projetos */
 .projects {
     padding: 80px 20px;
-    background-color: #f4f4f4;
+    background-color: #cfcfcf;
     text-align: center;
-    min-height: 80vh;
+    min-height: 80.9vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -337,7 +273,6 @@ footer ul li a:hover {
     margin-top: auto;
 }
 
-
 /* Modal */
 .modal-overlay {
     display: none;
@@ -351,7 +286,7 @@ footer ul li a:hover {
 }
 
 .modal {
-    display: none;
+    display: block;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -366,39 +301,51 @@ footer ul li a:hover {
     text-align: center;
 }
 
-.modal img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.modal h3 {
-    font-size: 2em;
+.modal-title {
+    font-size: 1.5em;
     color: #001f3f;
-    margin-bottom: 20px;
 }
 
-.modal p {
+.close-btn {
+    font-size: 2em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #aaa;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.modal-body {
+    margin-top: 20px;
     font-size: 1.2em;
-    color: #666666;
-    margin-bottom: 20px;
 }
 
-.modal .close-btn {
+.modal-footer {
+    margin-top: 20px;
+}
+
+.modal-footer button {
     padding: 10px 20px;
     background-color: #FFC107;
     color: #001f3f;
     border: none;
     border-radius: 5px;
-    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.modal .close-btn:hover {
+.modal-footer button:hover {
     background-color: #e6b400;
 }
+
 
 /* Seção de Contato */
 .contact {
@@ -607,7 +554,7 @@ header nav ul li a:hover {
 
 /* About Section */
 .about {
-    padding: 80px 20px;
+    padding: 96.5px 20px;
     text-align: center;
     background-color: #f4f4f4;
 }
@@ -975,4 +922,13 @@ form[style="display: inline;"] button {
 
 form[style="display: inline;"] button:hover {
     background-color: #c82333;
+}
+.bot_edit{
+    display: inline-block;
+    margin: 10px 0;
+    padding: 6px 15px;
+    background-color: #FFC107;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
 }

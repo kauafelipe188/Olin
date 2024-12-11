@@ -1,5 +1,5 @@
-// Seleciona todos os itens do projeto/serviço
-const projectItems = document.querySelectorAll('.project-item, .service-item');
+// Seleciona todos os itens do projeto
+const projectItems = document.querySelectorAll('.project-item');
 
 // Seleciona o modal e a sobreposição
 const modal = document.querySelector('.modal');
@@ -7,10 +7,11 @@ const modalOverlay = document.querySelector('.modal-overlay');
 const modalCloseBtn = document.querySelector('.modal .close-btn');
 
 // Função para abrir o modal
-function openModal(content) {
-    modal.querySelector('h3').textContent = content.title;
-    modal.querySelector('p').textContent = content.description;
-    modal.querySelector('img').src = content.image;
+function openModal(title, description, startDate, endDate) {
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-description").textContent = description;
+    document.getElementById("modal-start-date").textContent = startDate;
+    document.getElementById("modal-end-date").textContent = endDate;
     modal.style.display = 'block';
     modalOverlay.style.display = 'block';
 }
@@ -21,15 +22,15 @@ function closeModal() {
     modalOverlay.style.display = 'none';
 }
 
-// Adiciona evento de clique nos itens
-projectItems.forEach((item, index) => {
+// Adiciona evento de clique nos itens do projeto
+projectItems.forEach((item) => {
     item.addEventListener('click', () => {
-        const content = {
-            title: `Título do Projeto ${index + 1}`, // Substituir pelo conteúdo real
-            description: `Descrição detalhada do projeto/serviço ${index + 1}.`,
-            image: `https://via.placeholder.com/300` // Substituir pela URL real
-        };
-        openModal(content);
+        const title = item.querySelector('h2').textContent;
+        const description = item.querySelector('p').textContent;
+        const startDate = item.querySelector('.start-date').textContent;
+        const endDate = item.querySelector('.end-date').textContent;
+
+        openModal(title, description, startDate, endDate);
     });
 });
 

@@ -24,7 +24,7 @@
             <td>{{ project.description }}</td>
             <td>{{ project.progress }}%</td>
             <td>
-                <a href="{{ url_for('unique_routes.edit_project', project_id=project.id) }}">Editar</a>
+                <a href="{{ url_for('unique_routes.edit_project', project_id=project.id) }}" class="bot_edit">Editar</a>
                 <form action="{{ url_for('unique_routes.delete_project', project_id=project.id) }}" method="POST" style="display: inline;">
                     <button type="submit">Excluir</button>
                 </form>

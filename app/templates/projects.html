@@ -7,18 +7,32 @@
     <h1>Projetos em Andamento</h1>
     <div class="project-list">
         {% for project in projects %}
-        <div class="project-item">
+        <div class="project-item" style="cursor: pointer;">
             <h2>{{ project.title }}</h2>
-            <p>{{ project.description }}</p>
-            <p>Início: {{ project.start_date }}</p>
-            <p>Fim: {{ project.end_date }}</p>
-            {% if project.image %}
-            <img src="{{ url_for('static', filename=project.image) }}" alt="{{ project.title }}">
-            {% else %}
-            <p>Sem imagem disponível</p>
-            {% endif %}
+            <p>{{ project.description | truncate(100) }}</p>
+            <p class="start-date">Início: {{ project.start_date }}</p>
+            <p class="end-date">Fim: {{ project.end_date }}</p>
         </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Modal -->
+<div id="modal" class="modal-overlay" style="display: none;">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h5 id="modal-title"></h5>
+        </div>
+        <div class="modal-body">
+            <p><strong>Descrição:</strong> <span id="modal-description"></span></p>
+            <p><strong>Início:</strong> <span id="modal-start-date"></span></p>
+            <p><strong>Fim:</strong> <span id="modal-end-date"></span></p>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
