@@ -1,0 +1,29 @@
+python -m venv venv
+venv\Scripts\activate
+pip install requiriments.txt
+flask shell
+from app import db
+db.create_all()
+print("Banco de dados criado!")
+
+banco de dados
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+
+flask shell
+from app import db
+from app.models import Admin
+from werkzeug.security import generate_password_hash
+
+# Criação do administrador
+username = "admin"  # Escolha o nome de usuário
+password = "123456"  # Escolha a senha
+password_hash = generate_password_hash(password)
+
+admin = Admin(username=username, password_hash=password_hash)
+db.session.add(admin)
+db.session.commit()
+
+print("Administrador criado com sucesso!")
+
