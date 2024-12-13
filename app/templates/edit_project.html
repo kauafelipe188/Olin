@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Editar Projeto</h1>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST">
     <label for="title">Título</label>
     <input type="text" name="title" value="{{ project.title }}" required>
 
@@ -15,9 +15,8 @@
     <label for="end_date">Data de Término</label>
     <input type="date" name="end_date" value="{{ project.end_date }}" required>
 
-    <label for="image">Imagem (deixe em branco para manter a atual)</label>
-    <input type="file" name="image">
-
+    <!-- Não há campo de imagem aqui -->
+    
     <button type="submit">Salvar Alterações</button>
 </form>
 {% endblock %}

@@ -1,23 +1,29 @@
+# Configuração inicial do ambiente
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
-flask shell
 
-
-banco de dados
+# Inicializando o banco de dados
 flask db init
 flask db migrate -m "Initial migration"
 flask db upgrade
 
+# Acessando o shell do Flask
 flask shell
+# Dentro do flask shell, rode o seguinte:
+
 from app import db
 from app.models import Admin
 from werkzeug.security import generate_password_hash
 
+# Defina o nome de usuário e senha do administrador
 username = "admin"
 password = "123456"
+
+# Criptografe a senha
 password_hash = generate_password_hash(password)
 
+# Crie o admin
 admin = Admin(username=username, password_hash=password_hash)
 db.session.add(admin)
 db.session.commit()

@@ -521,6 +521,7 @@ header nav ul li a:hover {
     font-size: 3em;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease-in-out;
+    color: #0056b3;
 }
 
 .hero p {
